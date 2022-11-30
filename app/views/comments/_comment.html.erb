@@ -1,0 +1,28 @@
+<% unless comment.archived? %>
+  <div 
+    <% if comment.status == "private" %>
+      style="border: 1px solid;background-color:#efefef;padding:0 10px;"
+    <% end %>
+  >
+    <% if comment.status == "private" %>
+      <p><i>Comment awaiting moderation...</i></p>
+    <% end %>
+
+    <p>
+      <strong>Commenter:</strong>
+      <%= comment.commenter %>
+    </p>
+
+    <p>
+      <strong>Comment:</strong>
+      <%= comment.body %>
+    </p>
+
+    <p>
+      <%= link_to "Destroy Comment", [comment.article, comment], data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %>
+    </p>
+  </div>
+<% end %>
